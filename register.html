@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta data-n-head="ssr" charset="utf-8">
+    <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1">
+    <meta data-n-head="ssr" data-hid="description" name="description" content="">
+    <link rel="icon" type="image/png" href="./src/img/sky2.png">
+    <link href="./src/css/style.css" rel="stylesheet" />
+    <link href="./src/css/police.css" rel="stylesheet" />
+    <link href="./src/css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.0.0/css/all.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="container">
+            <div class="content">
+                <a>Accueil</a>
+                <a>News</a>
+                <a>Support</a>
+                <a>Boutique</a>
+                <a id="Login">Se connecter</a>
+                <a id="Register">S'inscrire</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="menu" onclick="functionMenu()"><i class="fa-solid fa-bars-staggered"></i></button>
+            <div id="menuDrop" class="drop-content">
+                <a>Accueil</a>
+                <a>News</a>
+                <a>Support</a>
+                <a>Boutique</a>
+                <a id="Login">Se connecter</a>
+                <a id="Register">S'inscrire</a>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="scrollbar" id="scrolly">
+        <div class="section accueil">
+            <div class="containerLogin" id="loginForm">
+                <span><i class="fa-solid fa-user-lock"></i></span>
+                <h3>Inscription</h3>
+                <div>
+                    <input id="pseudo" type="text" class="input" required placeholder="Pseudo" />
+                    <input id="email" type="text" class="input" required placeholder="Adresse email" />
+                    <input id="password" type="password" class="input" required placeholder="Mot de passe" />
+                    <div class="btn-flex">
+                        <button id="locationBtn" class="loginBtn" onclick="register()">Inscription</button>
+                        <p>J'ai déjà un <a href="./login">compte</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <!--<script src="./src/js/script.js"></script>-->
+
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7JfePtGV-szUmI5q9ZEu0BgaD5m6D__Y",
+            authDomain: "skyloria-13bcb.firebaseapp.com",
+            databaseURL: "https://skyloria-13bcb-default-rtdb.firebaseio.com",
+            projectId: "skyloria-13bcb",
+            storageBucket: "skyloria-13bcb.appspot.com",
+            messagingSenderId: "745250488561",
+            appId: "1:745250488561:web:1d07fc772c4e2d2368a950",
+            measurementId: "G-X8CPJNL28T"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        async function register() {
+            /*location.replace("./dashboard/user/account.html")*/
+            const db = firebase.database();
+            const username = document.getElementById("pseudo").value
+            const email = document.getElementById("email").value
+            const password = document.getElementById("password").value
+            let userId, user;
+            try {
+                let userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password)
+                if (!userCredential?.user?.uid) {
+                    throw new Error("There is no UID!", userCredential);
+                }
+                user = userCredential.user;
+                userId = userCredential.user.uid;
+                console.log(`UID is: ${userId}`);
+                
+                let today = new Date().toLocaleDateString()
+
+                await db.ref("users/" + userId).set({
+                    user: username,
+                    uid: userId,
+                    email: email,
+                    date: `${today}`,
+                });
+                location.replace("./dashboard/user/account.html")
+                console.log(`write to RTDB finished`);
+
+                return "success!"
+            } catch (ex) {
+                console.error(ex);
+                document.getElementById("error").innerHTML = ex.message
+            }
+        }
+    </script>
+</body>
+
+</html>

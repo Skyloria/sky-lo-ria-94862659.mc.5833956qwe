@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta data-n-head="ssr" charset="utf-8">
+    <title>Accueil | Skyloria</title>
+    <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1">
+    <meta data-n-head="ssr" data-hid="description" name="description"
+        content="">
+    <link href="./src/css/style.css" rel="stylesheet" />
+    <link href="./src/css/police.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./src/img/sky2.png">
+    <script src="https://leonardosnt.github.io/mc-player-counter/dist/mc-player-counter.min.js"></script>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.0.0/css/all.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="container">
+            <div class="content">
+                <a>Accueil</a>
+                <a>News</a>
+                <a>Support</a>
+                <a>Boutique</a>
+                <a id="Login">Se connecter</a>
+                <a id="Register">S'inscrire</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="menu" onclick="functionMenu()"><i class="fa-solid fa-bars-staggered"></i></button>
+            <div id="menuDrop" class="drop-content">
+                <a>Accueil</a>
+                <a>News</a>
+                <a>Support</a>
+                <a>Boutique</a>
+                <a id="Login">Se connecter</a>
+                <a id="Register">S'inscrire</a>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="scrollbar" id="scrolly">
+        <div class="section accueil">
+            <div class="container">
+                <img src="./src/img/sky2.png">
+                <h3>Bienvenue sur Skyloria</h3>
+                <p>Skyloria est un serveur Minecraft PvP Faction Moddées.</p>
+                <p>Rejoignez les <span data-playercounter-ip="play.hypixel.net" data-playercounter-format="{online}">0</span> joueurs connectés !</p>
+                <div class="content">
+                    <a id="downLaunch">Launcher</a><a>Discord</a>
+                </div>
+                <div class="content">
+
+                    <a id="btnReseau"><i class="fa-brands fa-twitter"></i></a>
+                    <a id="btnReseau"><i class="fa-brands fa-discord"></i></a>
+                    <a id="btnReseau"><i class="fa-brands fa-instagram"></i></a>
+                    <a id="btnReseau"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section news">
+            <div class="container">
+                <div class="tabNews">
+                    <div class="container">
+                        <a>
+                            <i class="fa-solid fa-newspaper"></i><span>Nouveautés</span>
+                        </a>
+                        <a>
+                            <i class="fa-solid fa-cloud-arrow-down"></i><span>Mises à jours</span>
+                        </a>
+                        <a>
+                            <i class="fa-solid fa-calendar-lines-pen"></i><span>Prochainement</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section info">
+            <div class="container">
+                <div class="infoBox">
+                    <i class="fa-solid fa-coin"></i>
+                    <h3>À propos</h3>
+                    <p>Skyloria est un serveur PvP/Factions Moddées, 100% FarmToWin !</p>
+                    <p>Profitez enfin d'un serveur sur lequel vous pouvez payer avec l'Économie du jeu, ou bien avec des
+                        points boutique.</p>
+                </div>
+                <div class="infoBox">
+                    <i class="fa-solid fa-coin"></i>
+                    <h3>Économie</h3>
+                    <p>L'Économie de Skyloria à été re visiter, pour vous donner un maximum de chance ! et que tout le
+                        monde puisse être au même niveau.</p>
+                </div>
+                <div class="infoBox">
+                    <i class="fa-solid fa-plus"></i>
+                    <h3>Ajouts</h3>
+                    <p>Skyloria vous propose un maximum d'ajouts et de contenu, des événements sont prévu chaque mois
+                        afin de mettre en valeurs les factions (que ce soit une faction débutante ou bien avancer).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section details">
+            <div class="container">
+                <div class="infoBoxPlus">
+                    <span data-playercounter-ip="play.hypixel.net" data-playercounter-format="{online}">0</span>
+                    <p>joueurs connectés</p>
+                </div>
+                <div class="infoBoxPlus">
+                    <span>+100000</span>
+                    <p>Joueurs Inscrits</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section footer">
+            <div class="container">
+                <p>© Skyloria | 2021 <a>Mentions légales</a></p>
+                <p>Développé par <a>Syrnaxx</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function functionMenu() {
+            document.getElementById("menuDrop").classList.toggle("show");
+        }
+        
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }       
+        </script>
+
+</body>
+
+</html>
